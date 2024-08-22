@@ -12,6 +12,8 @@ jobs:
       - name: Load and cache dependencies
         # uses: alexthegithubber/my-action # if action was stored in a standalone GitHub repo
         uses: ./.github/actions/cached-deps # if action was stored locally in the actions folder under the .github folder
+        with:
+          caching: 'false'
       - name: Lint code
         run: npm run lint
   test:
