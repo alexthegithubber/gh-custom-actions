@@ -10,10 +10,13 @@ jobs:
       - name: Get code
         uses: actions/checkout@v4
       - name: Load and cache dependencies
+        id: cache-deps
         # uses: alexthegithubber/my-action # if action was stored in a standalone GitHub repo
         uses: ./.github/actions/cached-deps # if action was stored locally in the actions folder under the .github folder
         with:
           caching: 'false'
+      - name: Output information
+        run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
       - name: Lint code
         run: npm run lint
   test:
